@@ -62,19 +62,6 @@ After enabling the plugin, you’ll find a new menu button in the script editor 
 Upon capture, a file save dialog appears letting you save the screenshot in your preferred format.
 
 ---
-
-## API Details
-
-This plugin is implemented as an EditorPlugin script (`code_capture.gd`) and uses:
-
-- `MenuButton` and `PopupMenu` for UI.
-- `CodeEdit` to manipulate and duplicate code text.
-- `SubViewport` to render the code snippet to an image.
-- `FileDialog` for saving the screenshot.
-
-The plugin also copies the editor font to the project folder (`editor_font` dir) if needed, ensuring consistent font rendering in screenshots.
-
----
 `By 1MaxSøn`
 
 Enjoy capturing your code beautifully!
