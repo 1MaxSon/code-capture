@@ -17,6 +17,7 @@ var script_editor_toolbar: HBoxContainer
 var code_edit: CodeEdit
 var editor_font: Font
 var script_path: String
+var last_save_path: String = ""
 
 
 func _enter_tree() -> void:
@@ -69,7 +70,7 @@ func _on_capture_menu_popup_id_pressed(id: int) -> void:
 	var code: String
 	match id:
 		ID_CAPTURE_ITEM:
-			code = code_edit.text
+			code = script_editor.get_current_script().source_code
 		ID_CAPTURE_SEL_ITEM:
 			if !code_edit.has_selection():
 				push_error("There is no selected code")
@@ -219,9 +220,13 @@ func make_screenshot(sv: SubViewport, code_edit: CodeEdit) -> void:
 	if current_script.resource_path != "":
 		script_name = current_script.resource_path.get_file() 
 	
-	dialog.current_path = OS.get_system_dir(
+	if last_save_path != "":
+		dialog.current_path = last_save_path
+	else:
+		dialog.current_path = OS.get_system_dir(
 			OS.SYSTEM_DIR_PICTURES
 		).path_join(script_name.get_basename() + ".png")
+
 
 	dialog.filters = PackedStringArray(["*.png", "*.jpg", "*.webp"])
 	add_child(dialog)
@@ -236,6 +241,7 @@ func make_screenshot(sv: SubViewport, code_edit: CodeEdit) -> void:
 			save_err = img.save_jpg(path, 0.85)
 		else:
 			save_err = img.save_png(path)
+		last_save_path = path
 		if save_err != OK:
 			push_error("Couldn't save screenshot. ", error_string(save_err))
 		sv.queue_free()
