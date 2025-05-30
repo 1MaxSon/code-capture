@@ -1,6 +1,6 @@
 <h1 align="center">
+	<img alt="Logo" src="icon.svg"><br>
 	<b>CodeCapture</b> <br>
-	<img alt="Logo" src="icon.svg">
 </h1>
 <p align="center">
 Godot Editor Plugin to capture screenshots of your GDScript code snippets<br>
