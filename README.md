@@ -51,12 +51,15 @@ Godot Editor Plugin to capture screenshots of your GDScript code snippets<br>
 
 ## Usage
 
-After enabling the plugin, you’ll find a new menu button in the script editor toolbar with options:
+> [!NOTE]
+> After enabling the plugin, you need to **restart** the project.
+
+You’ll find a new menu button in the script editor toolbar with options:
 
 - **Capture Entire Script** — takes a screenshot of all the code.
 - **Capture Selected Code** — only the highlighted code snippet.
 - **Show Godot Version** — toggle to add Godot version label.
-- **Expand Selection to Full Lines** — expands the selected block to full lines.
+- **Expand Selection To Full Lines** — expands the selected block to full lines.
 - **Append Empty Line** — adds extra space at the end of the captured code.
 
 Upon capture, a file save dialog appears letting you save the screenshot in your preferred format.
