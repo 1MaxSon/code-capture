@@ -14,6 +14,7 @@ var capture_menu_popup: PopupMenu
 
 var script_editor: ScriptEditor
 var script_editor_toolbar: HBoxContainer
+var editor_filesystem: EditorFileSystem
 var code_edit: CodeEdit
 var editor_font: Font
 var script_path: String
@@ -21,7 +22,9 @@ var last_save_path: String = ""
 
 
 func _enter_tree() -> void:
-	await EditorInterface.get_resource_filesystem().filesystem_changed
+	editor_filesystem = EditorInterface.get_resource_filesystem()
+	if editor_filesystem.is_scanning():
+		await editor_filesystem.filesystem_changed
 	script_path = (get_script() as Script).resource_path
 	var font_path := get_first_font_in_dir(script_path.get_base_dir().path_join(EDITOR_FONT_DIR))
 	
@@ -129,9 +132,10 @@ func copy_editor_font_to_project() -> String:
 
 	file.store_buffer(font_bytes)
 	file.close()
-	var file_system := EditorInterface.get_resource_filesystem()
-	file_system.call_deferred("scan")
-	await file_system.filesystem_changed
+	editor_filesystem.call_deferred("scan")
+	if editor_filesystem.is_scanning():
+		await editor_filesystem.filesystem_changed
+	
 	return dest_path
 
 
