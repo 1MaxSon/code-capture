@@ -25,11 +25,12 @@ func _enter_tree() -> void:
 	editor_filesystem = EditorInterface.get_resource_filesystem()
 	if editor_filesystem.is_scanning():
 		await editor_filesystem.filesystem_changed
+	
 	script_path = (get_script() as Script).resource_path
 	var font_path := get_first_font_in_dir(script_path.get_base_dir().path_join(EDITOR_FONT_DIR))
 	
 	if !font_path:
-		font_path = await copy_editor_font_to_project()
+		font_path = await  copy_editor_font_to_project()
 	
 	if font_path:
 		editor_font = load(font_path)
@@ -53,8 +54,12 @@ func _enter_tree() -> void:
 
 
 func _exit_tree() -> void:
+	editor_font = null
+	script_path = ""
+	last_save_path = ""
 	if capture_menu_button:
 		capture_menu_button.queue_free()
+		capture_menu_button = null
 
 
 func _menu_button_about_to_popup() -> void:
@@ -132,9 +137,12 @@ func copy_editor_font_to_project() -> String:
 
 	file.store_buffer(font_bytes)
 	file.close()
-	editor_filesystem.call_deferred("scan")
+	
+	editor_filesystem.scan()
 	if editor_filesystem.is_scanning():
 		await editor_filesystem.filesystem_changed
+	
+	editor_filesystem.update_file(dest_path)
 	
 	return dest_path
 

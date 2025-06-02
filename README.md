@@ -3,7 +3,7 @@
 	<b>CodeCapture</b> <br>
 </h1>
 <p align="center">
-Godot Editor Plugin to capture screenshots of your GDScript code snippets<br>
+Godot Editor Plugin to capture screenshots of your code snippets<br>
 <a href="https://godotengine.org/download/archive/">
 	<img alt="Static Badge" src="https://img.shields.io/badge/Godot-4.4%2B-blue">
 </a>
@@ -11,8 +11,6 @@ Godot Editor Plugin to capture screenshots of your GDScript code snippets<br>
 <img alt="GitHub License" src="https://img.shields.io/github/license/1MaxSon/code-capture">
 </a>
 <img alt="Stars" src="https://img.shields.io/github/stars/1MaxSon/code-capture">
-<img alt="Repo Size" src="https://img.shields.io/github/repo-size/1MaxSon/code-capture">
-
 </p>
 
 ---
@@ -50,14 +48,10 @@ Godot Editor Plugin to capture screenshots of your GDScript code snippets<br>
 4. Extract the downloaded files into your Godot project's `addons` folder.
 
 ## Usage
+After enabling the plugin, you’ll find a new menu button in the script editor toolbar with options:
 
-> [!NOTE]
-> After enabling the plugin, you need to **restart** the project.
-
-You’ll find a new menu button in the script editor toolbar with options:
-
-- **Capture Entire Script** — takes a screenshot of all the code.
-- **Capture Selected Code** — only the highlighted code snippet.
+- **Capture** — takes a screenshot of all the code.
+- **Capture Selected** — only the highlighted code snippet.
 - **Show Godot Version** — toggle to add Godot version label.
 - **Expand Selection To Full Lines** — expands the selected block to full lines.
 - **Append Empty Line** — adds extra space at the end of the captured code.
